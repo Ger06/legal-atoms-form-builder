@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": ["id", "title", "questions"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the questionnaire"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the questionnaire"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/question"
+      }
+    }
+  },
+  "definitions": {
+    "question": {
+      "type": "object",
+      "required": ["id", "type", "text"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["text", "boolean", "radio", "checkbox", "dropdown"]
+        },
+        "text": {
+          "type": "string"
+        },
+        "min_length": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/option"
+          }
+        },
+        "preset": {
+          "type": "string",
+          "enum": ["genders", "ethnicities", "us_states", "countries"]
+        },
+        "allow_none": {
+          "type": "boolean"
+        },
+        "allow_other": {
+          "type": "boolean"
+        },
+        "visibility": {
+          "$ref": "#/definitions/visibility_condition"
+        }
+      }
+    },
+    "option": {
+      "type": "object",
+      "required": ["label", "value"],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": ["string", "number", "boolean"]
+        },
+        "show_value": {
+          "type": "boolean"
+        }
+      }
+    },
+    "visibility_condition": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["value_check", "and", "or", "not"]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "type": { "enum": ["value_check"] },
+            "question_id": { "type": "string" },
+            "question_text": { "type": "string" },
+            "expected_value": { "type": ["string", "number", "boolean"] }
+          },
+          "required": ["question_id", "question_text", "expected_value"]
+        },
+        {
+          "properties": {
+            "type": { "enum": ["and"] },
+            "conditions": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/visibility_condition" }
+            }
+          },
+          "required": ["conditions"]
+        },
+        {
+          "properties": {
+            "type": { "enum": ["or"] },
+            "conditions": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/visibility_condition" }
+            }
+          },
+          "required": ["conditions"]
+        },
+        {
+          "properties": {
+            "type": { "enum": ["not"] },
+            "condition": { "$ref": "#/definitions/visibility_condition" }
+          },
+          "required": ["condition"]
+        }
+      ]
+    }
+  }
+}

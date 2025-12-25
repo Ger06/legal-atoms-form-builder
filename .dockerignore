@@ -1,0 +1,23 @@
+# Git
+.git
+.gitignore
+
+# Coverage
+coverage/
+.simplecov
+
+# Bundler
+.bundle/
+vendor/bundle/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.log
+tmp/

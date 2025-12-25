@@ -1,0 +1,34 @@
+name: Ruby Tests
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby-version: ['3.0', '3.1', '3.2']
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby ${{ matrix.ruby-version }}
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
+
+    - name: Run tests
+      run: bundle exec rspec
+
+    - name: Upload coverage to Codecov (Ruby 3.2 only)
+      if: matrix.ruby-version == '3.2'
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage/coverage.json
+        fail_ci_if_error: false

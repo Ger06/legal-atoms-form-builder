@@ -1,0 +1,14 @@
+# Coverage reports
+coverage/
+.simplecov
+
+# Bundler
+.bundle/
+vendor/bundle/
+
+# RSpec
+.rspec_status
+
+# OS files
+.DS_Store
+Thumbs.db
