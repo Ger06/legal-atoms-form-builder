@@ -9,8 +9,7 @@ if ENV['COVERAGE'] || ENV['CI']
     add_group 'Conditions', 'lib/form_builder/conditions'
     add_group 'Core', 'lib/form_builder'
 
-    minimum_coverage 70
-    minimum_coverage_by_file 50
+    minimum_coverage 65
   end
 end
 

@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Ger06/legal-atoms-form-builder/actions/workflows/test.yml/badge.svg)](https://github.com/Ger06/legal-atoms-form-builder/actions/workflows/test.yml)
 [![Ruby Version](https://img.shields.io/badge/ruby-3.0%2B-red.svg)](https://www.ruby-lang.org/)
-[![Code Coverage](https://img.shields.io/badge/coverage-70%25+-brightgreen.svg)](https://github.com/Ger06/legal-atoms-form-builder)
+[![Code Coverage](https://img.shields.io/badge/coverage-65%25+-brightgreen.svg)](https://github.com/Ger06/legal-atoms-form-builder)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A flexible and extensible form builder for creating dynamic questionnaires with conditional visibility in Ruby.
